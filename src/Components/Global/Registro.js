@@ -32,7 +32,7 @@ export default class Registro extends Component {
 
     sigNup = () => {
       const data = this.state;
-      fetch('http://localhost:5000/api/v1/auth/register',{
+      fetch('https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/register',{
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers: new Headers({
@@ -40,6 +40,8 @@ export default class Registro extends Component {
         })
       }).then(function(response) {
         console.log(response.json());
+        alert('Usuario registrado correctamente')
+          window.location.href = "/";
       })
     }
 
