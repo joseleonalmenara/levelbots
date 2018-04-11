@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import './css/journal_theme/bootstrap.css';
 import './css/Registro.css';
-import axios from 'axios';
 
 export default class Registro extends Component {
     constructor(props) {
@@ -31,27 +30,18 @@ export default class Registro extends Component {
         event.preventDefault();
     }
 
-
-     async sigNup() {
-         console.log('this.state', this.state);
-         const data = this.state;
-
-         const options = {
-             headers: new Headers({
-                 'Content-Type': 'application/json'
-             })
-         };
-
-         axios.post('http://localhost:5000/api/v1/auth/register', {
-            body: JSON.stringify(data)
-         }, options)
-             .then(function (response) {
-                 console.log(response);
-             })
-             .catch(function (error) {
-                 console.log(error);
-             });
-     }
+    sigNup = () => {
+      const data = this.state;
+      fetch('http://localhost:5000/api/v1/auth/register',{
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then(function(response) {
+        console.log(response.json());
+      })
+    }
 
     render() {
         return (
@@ -109,7 +99,7 @@ export default class Registro extends Component {
                         />
                     </FormGroup>
 
-                    <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={() => this.sigNup()}>Registrarse</Button>
+                    <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={this.sigNup}>Registrarse</Button>
                     <br></br>
                     <a href="/">Tengo cuenta, iniciar sesión</a>
                 </form>
@@ -117,4 +107,3 @@ export default class Registro extends Component {
         );
     }
 }
-
