@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import './css/journal_theme/bootstrap.css';
-import './css/Login.css';
+import './css/style.css';
 
 export default class Login extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ export default class Login extends Component {
             console.log(response.json());
             if (response.ok) {
                 alert('Login correcto')
-                /*window.location.href = '/register'*/
+                window.location.href = '/inicio'
             }else {
                 alert('Login incorrecto')
             }

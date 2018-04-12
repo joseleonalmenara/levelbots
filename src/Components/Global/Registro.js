@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import './css/journal_theme/bootstrap.css';
-import './css/Registro.css';
+import './css/style.css';
 
 export default class Registro extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ export default class Registro extends Component {
       }).then(function(response) {
         console.log(response.json());
         alert('Usuario registrado correctamente')
-          window.location.href = "/";
+          window.location.href = "/inicio";
       })
     }
 
