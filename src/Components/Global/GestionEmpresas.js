@@ -23,6 +23,19 @@ export default class GestionAlumnos extends Component {
         })
     }
 
+
+    delete = (_id) => {
+        fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas/delete/${_id}`, {
+            method: 'DELETE', // or 'PUT'
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(function (response) {
+            console.log(response.json());
+            window.location.href = '/empresas'
+        })
+    }
+
     render() {
         return (
             <div>
@@ -56,8 +69,9 @@ export default class GestionAlumnos extends Component {
                                         <td>{dynamicData[data].nombreTutorLaboral}</td>
                                         <td>{dynamicData[data].emailTutorLaboral}</td>
                                         <td>
-                                            <a className="link-l"><FaEdit/></a>
-                                            <a className="link-l"><FaTrash/></a>
+                                            <a onClick={()=>{ alert('Editar empresa '+ data); }} className="link-l"><i><FaEdit/></i></a>
+                                            <a onClick={()=>{this.delete (dynamicData[data]._id)}} className="link-l"><i><FaTrash/></i></a>
+
 
                                         </td>
                                     </tr>

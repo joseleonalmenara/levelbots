@@ -58,8 +58,9 @@ export default class GestionAlumnos extends Component {
                                             <td>{dynamicData[data].direccion}</td>
                                             <td>{dynamicData[data].foto}</td>
                                             <td>
-                                                <a className="link-l"><FaEdit/></a>
-                                                <a className="link-l"><FaTrash/></a>
+                                                <a onClick={()=>{ alert('Editar alumno '+ data); }} className="link-l"><i><FaEdit/></i></a>
+                                                <a onClick={()=>{ alert('Eliminar alumno '+ data); }} className="link-l"><i><FaTrash/></i></a>
+
 
                                             </td>
                                         </tr>
