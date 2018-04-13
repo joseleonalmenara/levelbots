@@ -14,9 +14,9 @@ export default class GestionAlumnos extends Component {
     }
 
     componentDidMount() {
-        fetch("https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas").
-        then(response => response.json()).
-        then(findresponse => {
+        fetch("https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas")
+            .then(response => response.json())
+            .then(findresponse => {
             this.setState({
                 data: [findresponse]
             });
