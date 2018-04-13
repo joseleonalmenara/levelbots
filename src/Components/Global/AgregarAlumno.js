@@ -15,7 +15,8 @@ export default class AgregarAlumno extends Component {
             notaMedia: '',
             empresaAsignada: '',
             direccion: '',
-            foto: ''
+            foto: '',
+            data: []
         };
     }
 
@@ -33,19 +34,33 @@ export default class AgregarAlumno extends Component {
         event.preventDefault();
     }
 
+    componentDidMount() {
+        fetch("https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas")
+            .then(response => response.json())
+            .then(findresponse => {
+                this.setState({
+                    data: [findresponse]
+                });
+            })
+    }
+
     agregar = () => {
-      const data = this.state;
-      fetch('https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/alumnos/add',{
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: new Headers({
-          'Content-Type': 'application/json'
+        const data = this.state;
+        fetch('https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/alumnos/add',{
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(function(response) {
+            if (response.ok) {
+                console.log(response.json());
+                alert('Alumno agregado correctamente')
+                window.location.href = "/alumnos";
+            }else{
+                alert('Error al agregar, revise los campos')
+            }
         })
-      }).then(function(response) {
-        console.log(response.json());
-        alert('Alumno agregado correctamente')
-          window.location.href = "/alumnos";
-      })
     }
 
     render() {
@@ -104,17 +119,26 @@ export default class AgregarAlumno extends Component {
                         />
                     </FormGroup>
 
-                    <FormGroup controlId="empresaAsignada" bsSize="large">
-                        <FormControl
-                            autoFocus
-                            type="text"
-                            placeholder=" Empresa asignada"
-                            value={this.state.empresaAsignada}
-                            onChange={event => this.setState({empresaAsignada: event.target.value})}
-                        />
-                    </FormGroup>
+                    <select value={this.state.empresaAsignada} onChange={event => this.setState({empresaAsignada: event.target.value})}>
+                        <option value=""> --- Seleccione una empresa ---</option>
+                        {
+                            this.state.data.map((dynamicData, Key) => {
+                                let keys = Object.keys(dynamicData);
+                                return keys.map(data => {
+                                    return (
+                                            <option value={dynamicData[data]._id}>{dynamicData[data].nombre}</option>
+
+                                    );
+                                });
+                            })
+
+                        }
+
+                    </select>
+
 
                     <FormGroup controlId="direccion" bsSize="large">
+                        <br/>
                         <FormControl
                             autoFocus
                             type="text"
