@@ -4,6 +4,8 @@ import './css/style.css';
 import BarraMenu from "./shared/BarraMenu";
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaEdit from 'react-icons/lib/fa/edit';
+import { Button } from 'react-bootstrap'
+
 
 export default class GestionAlumnos extends Component {
     constructor() {
@@ -84,8 +86,8 @@ export default class GestionAlumnos extends Component {
                     }
 
                     </tbody>
+                    <Button className=" btn btn-lg btn-primary btn-block" type="button" href="/agregarAlumno" id="btnAgregarAlumno">Agregar alumno</Button>
                 </table>
-
 
             </div>
         )

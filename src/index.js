@@ -6,6 +6,8 @@ import Registro from './Components/Global/Registro';
 import GestionAlumnos from './Components/Global/GestionAlumnos';
 import GestionEmpresas from './Components/Global/GestionEmpresas';
 import PaginaInicial from './Components/Global/PaginaInicial';
+import AgregarAlumno from "./Components/Global/AgregarAlumno";
+import AgregarEmpresa from "./Components/Global/AgregarEmpresa";
 
 ReactDOM.render(
         <Router>
@@ -15,6 +17,8 @@ ReactDOM.render(
                 <Route path="/inicio" component={PaginaInicial} />
                 <Route path="/empresas" component={GestionEmpresas} />
                 <Route path="/alumnos" component={GestionAlumnos} />
+                <Route path="/agregarAlumno" component={AgregarAlumno} />
+                <Route path="/agregarEmpresa" component={AgregarEmpresa} />
             </div>
 
         </Router>,
