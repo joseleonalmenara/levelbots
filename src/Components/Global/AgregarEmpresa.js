@@ -65,7 +65,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="numTelefono" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Número de teléfono"
                             value={this.state.numTelefono}
@@ -75,7 +74,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="direccion" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Dirección"
                             value={this.state.direccion}
@@ -85,7 +83,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="correoElectronico" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Correo electrónico"
                             value={this.state.correoElectronico}
@@ -95,7 +92,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="notaMedia" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Latitud, longitud"
                             value={this.state.latLng}
@@ -105,7 +101,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="tutorLaboral" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Nombre del tutor laboral"
                             value={this.state.tutorLaboral}
@@ -115,7 +110,6 @@ export default class AgregarEmpresa extends Component {
 
                     <FormGroup controlId="emailTutorLaboral" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Correo electrónico del tutor laboral"
                             value={this.state.emailTutorLaboral}

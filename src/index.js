@@ -9,6 +9,8 @@ import PaginaInicial from './Components/Global/PaginaInicial';
 import AgregarAlumno from "./Components/Global/AgregarAlumno";
 import AgregarEmpresa from "./Components/Global/AgregarEmpresa";
 
+/*<Route path="*" component={NotFoundPage}/>*/
+
 ReactDOM.render(
         <Router>
             <div>

@@ -5,12 +5,15 @@ import BarraMenu from "./shared/BarraMenu";
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaEdit from 'react-icons/lib/fa/edit';
 import { Button } from 'react-bootstrap';
+import ModalEdicionEmpresa from './shared/ModalEdicionEmpresa'
+
 
 export default class GestionAlumnos extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            data: [],
+            isModalOpen: false
         }
     }
 
@@ -24,6 +27,12 @@ export default class GestionAlumnos extends Component {
         })
     }
 
+    openModal(){
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
 
     delete = (_id) => {
         fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas/delete/${_id}`, {
@@ -33,13 +42,14 @@ export default class GestionAlumnos extends Component {
             })
         }).then(function (response) {
             console.log(response.json());
-            window.location.href = '/empresas'
+            window.location.reload()
         })
     }
 
     render() {
         return (
             <div>
+                <ModalEdicionEmpresa isModalOpen={this.state.isModalOpen}/>
                 <BarraMenu/>
                 <table className="table">
                     <thead>
@@ -70,7 +80,7 @@ export default class GestionAlumnos extends Component {
                                         <td>{dynamicData[data].nombreTutorLaboral}</td>
                                         <td>{dynamicData[data].emailTutorLaboral}</td>
                                         <td>
-                                            <a onClick={()=>{ alert('Editar empresa '+ data); }} className="link-l"><i><FaEdit/></i></a>
+                                            <a onClick={this.openModal.bind(this)} className="link-l"><i><FaEdit/></i></a>
                                             <a onClick={()=>{this.delete (dynamicData[data]._id)}} className="link-l"><i><FaTrash/></i></a>
 
 

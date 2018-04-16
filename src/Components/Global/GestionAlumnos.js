@@ -4,14 +4,17 @@ import './css/style.css';
 import BarraMenu from "./shared/BarraMenu";
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaEdit from 'react-icons/lib/fa/edit';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
+import ModalEdicionAlumno from './shared/ModalEdicionAlumno'
+
 
 
 export default class GestionAlumnos extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            data: [],
+            isModalOpen: false
         }
     }
 
@@ -25,6 +28,12 @@ export default class GestionAlumnos extends Component {
         })
     }
 
+    openModal(){
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
     delete = (_id) => {
         fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/alumnos/delete/${_id}`, {
             method: 'DELETE', // or 'PUT'
@@ -33,13 +42,14 @@ export default class GestionAlumnos extends Component {
             })
         }).then(function (response) {
             console.log(response.json());
-            window.location.href = '/alumnos'
+            window.location.reload()
         })
     }
 
     render() {
         return (
             <div>
+                <ModalEdicionAlumno isModalOpen={this.state.isModalOpen} data={this.state.data}/>
                 <BarraMenu/>
                 <table className="table">
                     <thead>
@@ -72,7 +82,7 @@ export default class GestionAlumnos extends Component {
                                             <td>{dynamicData[data].direccion}</td>
                                             <td>{dynamicData[data].foto}</td>
                                             <td>
-                                                <a onClick={()=>{ alert('Editar alumno '+ data); }} className="link-l"><i><FaEdit/></i></a>
+                                                <a onClick={this.openModal.bind(this)} className="link-l"><i><FaEdit/></i></a>
                                                 <a onClick={()=>{this.delete (dynamicData[data]._id)}} className="link-l"><i><FaTrash/></i></a>
 
 

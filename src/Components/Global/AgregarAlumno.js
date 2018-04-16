@@ -81,7 +81,6 @@ export default class AgregarAlumno extends Component {
 
                     <FormGroup controlId="apellidos" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Apellidos"
                             value={this.state.apellidos}
@@ -91,7 +90,6 @@ export default class AgregarAlumno extends Component {
 
                     <FormGroup controlId="numTelefono" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Número de teléfono"
                             value={this.state.numTelefono}
@@ -101,7 +99,6 @@ export default class AgregarAlumno extends Component {
 
                     <FormGroup controlId="correoElectronico" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Correo electrónico"
                             value={this.state.correoElectronico}
@@ -111,7 +108,6 @@ export default class AgregarAlumno extends Component {
 
                     <FormGroup controlId="notaMedia" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="number"
                             placeholder=" Nota media"
                             value={this.state.notaMedia}
@@ -140,7 +136,6 @@ export default class AgregarAlumno extends Component {
                     <FormGroup controlId="direccion" bsSize="large">
                         <br/>
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Dirección"
                             value={this.state.direccion}
@@ -150,7 +145,6 @@ export default class AgregarAlumno extends Component {
 
                     <FormGroup controlId="foto" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Foto"
                             value={this.state.foto}
