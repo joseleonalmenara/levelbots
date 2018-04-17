@@ -108,7 +108,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder="Nombre"
                                     value={this.state.data.nombre}
-                                    onChange={event => this.setState({nombre: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, nombre: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -117,7 +117,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder=" Apellidos"
                                     value={this.state.data.apellidos}
-                                    onChange={event => this.setState({apellidos: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, apellidos: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -126,7 +126,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder=" Número de teléfono"
                                     value={this.state.data.numTelefono}
-                                    onChange={event => this.setState({numTelefono: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, numTelefono: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -135,7 +135,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder=" Correo electrónico"
                                     value={this.state.data.correoElectronico}
-                                    onChange={event => this.setState({correoElectronico: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, correoElectronico: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -144,11 +144,12 @@ class ModalEdicionAlumno extends React.Component {
                                     type="number"
                                     placeholder=" Nota media"
                                     value={this.state.data.notaMedia}
-                                    onChange={event => this.setState({notaMedia: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, notaMedia: event.target.value}})}
                                 />
                             </FormGroup>
 
-                            <select value={this.state.data.empresaAsignada} onChange={event => this.setState({empresaAsignada: event.target.value})}>
+                            <select value={this.state.data.empresaAsignada} onChange={event => this.setState({data:{...this.state.data, empresaAsignada: event.target.value}})}
+                            >
                                 <option value=""> --- Seleccione una empresa ---</option>
                                 {
                                     this.state.dataEmpresas.map((dynamicData, Key) => {
@@ -172,7 +173,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder=" Dirección"
                                     value={this.state.data.direccion}
-                                    onChange={event => this.setState({direccion: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, direccion: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -181,7 +182,7 @@ class ModalEdicionAlumno extends React.Component {
                                     type="text"
                                     placeholder=" Foto"
                                     value={this.state.data.foto}
-                                    onChange={event => this.setState({foto: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, foto: event.target.value}})}
                                 />
                             </FormGroup>
 

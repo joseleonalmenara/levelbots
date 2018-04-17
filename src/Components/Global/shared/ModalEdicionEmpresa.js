@@ -107,7 +107,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder="Nombre"
                                     value={this.state.data.nombre}
-                                    onChange={event => this.setState({nombre: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, nombre: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -116,7 +116,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Número de teléfono"
                                     value={this.state.data.numTelefono}
-                                    onChange={event => this.setState({numTelefono: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, numTelefono: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -125,7 +125,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Dirección"
                                     value={this.state.data.direccion}
-                                    onChange={event => this.setState({direccion: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, direccion: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -134,7 +134,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Correo electrónico"
                                     value={this.state.data.correoElectronico}
-                                    onChange={event => this.setState({correoElectronico: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, correoElectronico: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -143,7 +143,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Latitud, longitud"
                                     value={this.state.data.latLng}
-                                    onChange={event => this.setState({latLng: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, latLng: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -152,7 +152,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Nombre del tutor laboral"
                                     value={this.state.data.nombreTutorLaboral}
-                                    onChange={event => this.setState({nombreTutorLaboral: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, nombreTutorLaboral: event.target.value}})}
                                 />
                             </FormGroup>
 
@@ -161,7 +161,7 @@ class ModalEdicionEmpresa extends React.Component {
                                     type="text"
                                     placeholder=" Correo electrónico del tutor laboral"
                                     value={this.state.data.emailTutorLaboral}
-                                    onChange={event => this.setState({emailTutorLaboral: event.target.value})}
+                                    onChange={event => this.setState({data:{...this.state.data, emailTutorLaboral: event.target.value}})}
                                 />
                             </FormGroup>
 
