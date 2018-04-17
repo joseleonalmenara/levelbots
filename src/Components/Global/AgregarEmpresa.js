@@ -13,7 +13,7 @@ export default class AgregarEmpresa extends Component {
             direccion: '',
             correoElectronico: '',
             latLng: '',
-            tutorLaboral: '',
+            nombreTutorLaboral: '',
             emailTutorLaboral: ''
         };
     }
@@ -103,8 +103,8 @@ export default class AgregarEmpresa extends Component {
                         <FormControl
                             type="text"
                             placeholder=" Nombre del tutor laboral"
-                            value={this.state.tutorLaboral}
-                            onChange={event => this.setState({tutorLaboral: event.target.value})}
+                            value={this.state.nombreTutorLaboral}
+                            onChange={event => this.setState({nombreTutorLaboral: event.target.value})}
                         />
                     </FormGroup>
 

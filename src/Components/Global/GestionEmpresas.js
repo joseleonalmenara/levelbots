@@ -8,12 +8,14 @@ import { Button } from 'react-bootstrap';
 import ModalEdicionEmpresa from './shared/ModalEdicionEmpresa'
 
 
-export default class GestionAlumnos extends Component {
+
+export default class GestionEmpresas extends Component {
     constructor() {
         super();
         this.state = {
             data: [],
-            isModalOpen: false
+            isModalOpen: false,
+            selectedIndex: 0,
         }
     }
 
@@ -21,18 +23,19 @@ export default class GestionAlumnos extends Component {
         fetch("https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas")
             .then(response => response.json())
             .then(findresponse => {
-            this.setState({
-                data: [findresponse]
-            });
-        })
+                this.setState({
+                    data: findresponse
+                });
+                console.log("findresponse", findresponse)
+            })
     }
 
-    openModal(){
+    openModal(index){
         this.setState({
-            isModalOpen: !this.state.isModalOpen
+            isModalOpen: !this.state.isModalOpen,
+            selectedIndex: index
         });
     }
-
 
     delete = (_id) => {
         fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas/delete/${_id}`, {
@@ -49,7 +52,9 @@ export default class GestionAlumnos extends Component {
     render() {
         return (
             <div>
-                <ModalEdicionEmpresa isModalOpen={this.state.isModalOpen}/>
+                {
+                    this.state.data.length > 0 &&  <ModalEdicionEmpresa isModalOpen={this.state.isModalOpen} data={this.state.data[this.state.selectedIndex]}/>
+                }
                 <BarraMenu/>
                 <table className="table">
                     <thead>
@@ -67,28 +72,25 @@ export default class GestionAlumnos extends Component {
                     </thead>
                     <tbody>
                     {
-                        this.state.data.map((dynamicData, Key) => {
-                            let keys = Object.keys(dynamicData);
-                            return keys.map(data => {
-                                return (
-                                    <tr>
-                                        <td>{dynamicData[data].nombre}</td>
-                                        <td>{dynamicData[data].numTelefono}</td>
-                                        <td>{dynamicData[data].direccion}</td>
-                                        <td>{dynamicData[data].correoElectronico}</td>
-                                        <td>{dynamicData[data].latLng}</td>
-                                        <td>{dynamicData[data].nombreTutorLaboral}</td>
-                                        <td>{dynamicData[data].emailTutorLaboral}</td>
-                                        <td>
-                                            <a onClick={this.openModal.bind(this)} className="link-l"><i><FaEdit/></i></a>
-                                            <a onClick={()=>{this.delete (dynamicData[data]._id)}} className="link-l"><i><FaTrash/></i></a>
+                        this.state.data.map((dynamicData, index) => {
+                            return (
+                                <tr>
+                                    <td>{dynamicData.nombre}</td>
+                                    <td>{dynamicData.numTelefono}</td>
+                                    <td>{dynamicData.direccion}</td>
+                                    <td>{dynamicData.correoElectronico}</td>
+                                    <td>{dynamicData.latLng}</td>
+                                    <td>{dynamicData.nombreTutorLaboral}</td>
+                                    <td>{dynamicData.emailTutorLaboral}</td>
+                                    <td>
+                                        <a onClick={()=> {this.openModal(index)}} className="link-l"><i><FaEdit/></i></a>
+                                        <a onClick={()=>{this.delete (dynamicData._id)}} className="link-l"><i><FaTrash/></i></a>
 
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
 
-                                );
-                            });
+                            );
                         })
 
                     }
@@ -101,3 +103,4 @@ export default class GestionAlumnos extends Component {
         )
     }
 }
+

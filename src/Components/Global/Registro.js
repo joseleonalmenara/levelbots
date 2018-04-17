@@ -63,7 +63,6 @@ export default class Registro extends Component {
 
                     <FormGroup controlId="apellidos" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Apellidos"
                             value={this.state.apellidos}
@@ -73,7 +72,6 @@ export default class Registro extends Component {
 
                     <FormGroup controlId="numTelefono" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Número de teléfono"
                             value={this.state.numTelefono}
@@ -83,7 +81,6 @@ export default class Registro extends Component {
 
                     <FormGroup controlId="correoElectronico" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="text"
                             placeholder=" Correo electrónico"
                             value={this.state.correoElectronico}
@@ -93,7 +90,6 @@ export default class Registro extends Component {
 
                     <FormGroup controlId="password" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="password"
                             placeholder=" Contraseña"
                             value={this.state.password}

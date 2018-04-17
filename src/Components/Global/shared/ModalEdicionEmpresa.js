@@ -13,17 +13,17 @@ const customStyles = {
         height                : '500px',
         transform             : 'translate(-50%, -50%)',
         overlfow              : 'scroll',
-
     }
 };
 
-class ModalEdicionAlumno extends React.Component {
+class ModalEdicionEmpresa extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             modalIsOpen: this.props.isModalOpen,
-            data: []
+            data: this.props.data,
+            dataEmpresas: []
         };
 
         this.openModal = this.openModal.bind(this);
@@ -31,6 +31,22 @@ class ModalEdicionAlumno extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
+
+    componentDidMount() {
+        fetch("https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas")
+            .then(response => response.json())
+            .then(findresponse => {
+                this.setState({
+                    dataEmpresas: [findresponse]
+                });
+            })
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(this.props.data._id !== nextProps.data._id){
+            this.setState({data: nextProps.data})
+        }
+    }
 
     openModal() {
         this.setState({modalIsOpen: true});
@@ -49,7 +65,7 @@ class ModalEdicionAlumno extends React.Component {
 
 
     editar = (_id) => {
-        const data = this.state;
+        const data = this.state.data;
         fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/empresas/edit/${_id}`, {
             method: 'PUT', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
@@ -60,7 +76,7 @@ class ModalEdicionAlumno extends React.Component {
             if (response.ok) {
                 console.log(response.json());
                 alert('Empresa editada correctamente')
-                window.location.href = "/alumnos";
+                window.location.href = "/empresas";
             }else{
                 alert('Error al editar, revise los campos')
             }
@@ -90,7 +106,7 @@ class ModalEdicionAlumno extends React.Component {
                                     autoFocus
                                     type="text"
                                     placeholder="Nombre"
-                                    value={this.state.nombre}
+                                    value={this.state.data.nombre}
                                     onChange={event => this.setState({nombre: event.target.value})}
                                 />
                             </FormGroup>
@@ -99,7 +115,7 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Número de teléfono"
-                                    value={this.state.numTelefono}
+                                    value={this.state.data.numTelefono}
                                     onChange={event => this.setState({numTelefono: event.target.value})}
                                 />
                             </FormGroup>
@@ -108,7 +124,7 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Dirección"
-                                    value={this.state.direccion}
+                                    value={this.state.data.direccion}
                                     onChange={event => this.setState({direccion: event.target.value})}
                                 />
                             </FormGroup>
@@ -117,7 +133,7 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Correo electrónico"
-                                    value={this.state.correoElectronico}
+                                    value={this.state.data.correoElectronico}
                                     onChange={event => this.setState({correoElectronico: event.target.value})}
                                 />
                             </FormGroup>
@@ -126,7 +142,7 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Latitud, longitud"
-                                    value={this.state.latLng}
+                                    value={this.state.data.latLng}
                                     onChange={event => this.setState({latLng: event.target.value})}
                                 />
                             </FormGroup>
@@ -135,8 +151,8 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Nombre del tutor laboral"
-                                    value={this.state.tutorLaboral}
-                                    onChange={event => this.setState({tutorLaboral: event.target.value})}
+                                    value={this.state.data.nombreTutorLaboral}
+                                    onChange={event => this.setState({nombreTutorLaboral: event.target.value})}
                                 />
                             </FormGroup>
 
@@ -144,13 +160,13 @@ class ModalEdicionAlumno extends React.Component {
                                 <FormControl
                                     type="text"
                                     placeholder=" Correo electrónico del tutor laboral"
-                                    value={this.state.emailTutorLaboral}
+                                    value={this.state.data.emailTutorLaboral}
                                     onChange={event => this.setState({emailTutorLaboral: event.target.value})}
                                 />
                             </FormGroup>
 
 
-                            <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={this.agregar}>Guardar empresa</Button>
+                            <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={()=>{this.editar(this.state.data._id)}}>Guardar empresa</Button>
                         </form>
                     </div>
                 </Modal>
@@ -159,4 +175,4 @@ class ModalEdicionAlumno extends React.Component {
     }
 }
 
-export default ModalEdicionAlumno
+export default ModalEdicionEmpresa

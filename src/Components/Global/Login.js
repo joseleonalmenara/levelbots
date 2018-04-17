@@ -64,7 +64,6 @@ export default class Login extends Component {
 
                     <FormGroup controlId="password" bsSize="large">
                         <FormControl
-                            autoFocus
                             type="password"
                             placeholder=" Contraseña"
                             value={this.state.password}

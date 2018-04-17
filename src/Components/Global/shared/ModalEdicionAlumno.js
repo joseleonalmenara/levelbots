@@ -13,8 +13,7 @@ const customStyles = {
         height                : '500px',
         transform             : 'translate(-50%, -50%)',
         overlfow              : 'scroll',
-
-    }
+}
 };
 
 class ModalEdicionAlumno extends React.Component {
@@ -23,7 +22,8 @@ class ModalEdicionAlumno extends React.Component {
 
         this.state = {
             modalIsOpen: this.props.isModalOpen,
-            data: this.props.data
+            data: this.props.data,
+            dataEmpresas: []
         };
 
         this.openModal = this.openModal.bind(this);
@@ -37,9 +37,15 @@ class ModalEdicionAlumno extends React.Component {
             .then(response => response.json())
             .then(findresponse => {
                 this.setState({
-                    data: [findresponse]
+                    dataEmpresas: [findresponse]
                 });
             })
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(this.props.data._id !== nextProps.data._id){
+            this.setState({data: nextProps.data})
+        }
     }
 
     openModal() {
@@ -59,7 +65,7 @@ class ModalEdicionAlumno extends React.Component {
 
 
     editar = (_id) => {
-        const data = this.state;
+        const data = this.state.data;
         fetch(`https://fctmanagerapi-roniwhquuu.now.sh/api/v1/auth/alumnos/edit/${_id}`, {
             method: 'PUT', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
@@ -78,6 +84,7 @@ class ModalEdicionAlumno extends React.Component {
     }
 
     render() {
+        console.log(this.state.data)
         return (
             <div>
                 <button onClick={this.openModal}>Open Modal</button>
@@ -144,7 +151,7 @@ class ModalEdicionAlumno extends React.Component {
                             <select value={this.state.data.empresaAsignada} onChange={event => this.setState({empresaAsignada: event.target.value})}>
                                 <option value=""> --- Seleccione una empresa ---</option>
                                 {
-                                    this.state.data.map((dynamicData, Key) => {
+                                    this.state.dataEmpresas.map((dynamicData, Key) => {
                                         let keys = Object.keys(dynamicData);
                                         return keys.map(data => {
                                             return (
@@ -178,7 +185,7 @@ class ModalEdicionAlumno extends React.Component {
                                 />
                             </FormGroup>
 
-                            <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={this.agregar}>Guardar alumno</Button>
+                            <Button className=" btn btn-lg btn-primary btn-block" type="button" onClick={()=>{this.editar(this.state.data._id)}}>Guardar alumno</Button>
                         </form>
                     </div>
                 </Modal>
